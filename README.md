@@ -156,5 +156,5 @@ Iot 개발자 데이터베이스 저장소
 ## 3일차 
 - SQL 기초 
     - DDL 
-    - DML 중 INSERT, UPDAT, DELETE
+    - DML 중 INSERT, UPDATE, DELETE
 - SQL 고급
