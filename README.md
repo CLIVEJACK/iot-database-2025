@@ -105,8 +105,8 @@ Iot 개발자 데이터베이스 저장소
     - 3당계 DB 구조 : 외부 스키마(실세계와 매칭) -> 개념 스키마(DB논리적 설계) -> 내부 스키마(물리적 설계) -> DB
     - 모델에 쓰이는 용어
         - 릴레이션 - 테이블과 매핑
-        - 속성 - 테이블 컬럼
-        - 튜플 - 테이블 로 
+        - 속성 - 테이블 컬럼 (column)
+        - 튜플 - 테이블 로 (row)
         - 관계 - 릴레이션 간의 관계 부모, 자식 연관
 
     - `무결 제약조건`
@@ -126,4 +126,35 @@ Iot 개발자 데이터베이스 저장소
 
 ## 2일차 
 - SQL 기초 
-    - ...
+    - 개요
+        - 데이터베이스에 있는 데이터를 추출 및 처리 작업을 위해서 사용되는 프로그래밍언어
+        - 일반 프로그래밍언어와 차이점
+            - DB에서만 문제해결 가능 
+            - 입출력을 모두 DB에서 테이블로 처리작업
+            - 컴파일 및 실행은 DBNMS가 수행
+            - DML(데이터 조작어) - 검색, 삽입, 수정, 삭제
+                - SELECT, INSERT, UPDATE, DELETE
+            - DDL(데이터 정의어)
+                - CREATE, ALTER, DROP
+            - DML(데이터 제어) 
+                - GRANT, REVOKE
+
+    - DML 중 SELECT
+
+    ``` sql
+    SELECT [ALL|DISTINCT] 컬럼명(들)
+      FROM 테이블(들)
+     [WHERE 검색조건(들)]
+     [GROUP BY 속성이름(들)]
+    [HAVING 집계함수 검색 조건(들)]
+     [ORDER BY 정렬할 속성(들) [ALL|DISTINCT]]
+      [WITH ROLLUP]
+    ```
+    - 쿼리 연습(정렬까지) : [SQL](./day02/da02_select.sql)
+    - 쿼리연습(집계함수부터) : [SQL](./day02/da03_select_집계함수부터.sql)
+
+## 3일차 
+- SQL 기초 
+    - DDL 
+    - DML 중 INSERT, UPDAT, DELETE
+- SQL 고급
