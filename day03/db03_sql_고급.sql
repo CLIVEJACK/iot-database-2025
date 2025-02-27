@@ -82,7 +82,10 @@ FROM Orders;
 -- DATEDIFF : D-day
 SELECT DATEDIFF(SYSDATE(), '2025-02-03');
 
--- Formatting,1000단위마다 넣기 
+-- Formatting,1000단위마다 넣기
+SELECT bookid
+	  ,FORMAT(price, 0) AS price
+FROM MyBook; 
 
 -- NULL = Python 도일 . 모든 다른 프로그래밍 언어에서는 전부 NULL,NUL
 -- 추가. 금액이 NULL일때 발생되는 현상
