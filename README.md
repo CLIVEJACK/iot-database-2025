@@ -41,18 +41,24 @@ Iot 개발자 데이터베이스 저장소
         ```
 
     3. MySQL Image 확인
-    ``` shell
-    > docker images
-    REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
-    mysql        latest    146682692a3a   4 weeks ago   1.09GB
-    ```
+        ``` shell
+        > docker images
+        REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+        mysql        latest    146682692a3a   4 weeks ago   1.09GB
+        ```
     4. Docker 컨테이너에 생성
-    - MySQL Port번호는 3306이 기본
-    - Oracle Port 1521
-    - SQL Server 1433
-    ``` shell
-    > docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=12345 -d -p 3306:3306 mysql:latest
-    ```
+        - MySQL Port번호는 3306이 기본
+        - Oracle Port 1521
+        - SQL Server 1433
+        ``` shell
+        > docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=12345 -d -p 3306:3306 mysql:latest
+        ```
+
+        - 컴퓨터 재시작후 컨테이너 자동시작 옵션 명령어
+        ```shell
+        > docker update --restart=always mysql-container    
+        ```
+
     5. 컨테이너 확인
         ```shell
         > docker ps -a
@@ -60,42 +66,42 @@ Iot 개발자 데이터베이스 저장소
         ```
 
     6. Docker 컨테이너 시작, 중지, 재시작
-    ```shell
-    > docker stop mysql-container    # 중지
-    > docker start mysql-container   # 시작
-    > docker restart mysql-container # 재시작
-    ```
+        ```shell
+        > docker stop mysql-container    # 중지
+        > docker start mysql-container   # 시작
+        > docker restart mysql-container # 재시작
+        ```
 
     7. MySQL Docker 컨테이너 접속
-    ``` shell 
-    > docker exec -it mysql-container bash # bash 리눅스의 powershell
-    bash-5.1# mysql -u root -p
-    Enter password:
-    Welcome to the MySQL monitor.  Commands end with ; or \g.
-    Your MySQL connection id is 10
-    Server version: 9.2.0 MySQL Community Server - GPL
+        ``` shell 
+        > docker exec -it mysql-container bash # bash 리눅스의 powershell
+        bash-5.1# mysql -u root -p
+        Enter password:
+        Welcome to the MySQL monitor.  Commands end with ; or \g.
+        Your MySQL connection id is 10
+        Server version: 9.2.0 MySQL Community Server - GPL
 
-    Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+        Copyright (c) 2000, 2025, Oracle and/or its affiliates.
 
-    Oracle is a registered trademark of Oracle Corporation and/or its
-    affiliates. Other names may be trademarks of their respective
-    owners.
+        Oracle is a registered trademark of Oracle Corporation and/or its
+        affiliates. Other names may be trademarks of their respective
+        owners.
 
-    Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+        Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-    mysql> show databases;
-    +--------------------+
-    | Database           |
-    +--------------------+
-    | information_schema |
-    | mysql              |
-    | performance_schema |
-    | sys                |
-    +--------------------+
-    4 rows in set (0.01 sec)
-    ```
+        mysql> show databases;
+        +--------------------+
+        | Database           |
+        +--------------------+
+        | information_schema |
+        | mysql              |
+        | performance_schema |
+        | sys                |
+        +--------------------+
+        4 rows in set (0.01 sec)
+        ```
 
-<img src = './image/001.png' width = '700'>
+    <img src = './image/001.png' width = '700'>
 
 - Workbench 설치
     - https://dev.mysql.com/downloads/workbench/
@@ -115,7 +121,7 @@ Iot 개발자 데이터베이스 저장소
 
     - `무결 제약조건`
         - 키 - **기본키**, **외래키**, 슈퍼키, 후보키, 대리키, 대체키
-        - 개체 무결성 제약조건, 참조 무결성 제약조건, 도메인 무결성 제약조건
+        - 개체 무결성 제약조건, 참조 무결성 제약조건, 도메인 무결성 제약조건,...
     
 
 - SQL 기초
@@ -358,19 +364,29 @@ Iot 개발자 데이터베이스 저장소
     - 데이터를 다루는 논리적인 작업단위
     - START TRANSACTION, SAVEPOINT, ROLLBACK[TO SAVEPOINT], COMMIT 트랜잭션 처리
     - 특징
-        - A - 원자성
-        - C - 일관성
-        - I - 고립성
-        - D - 지속성
+        - A(원자성) - Atomicity, 원자처럼 쪼개지지 않고 한 덩어리로 취급, All or nothing.
+        - C(일관성) - Consisency, 트랜잭션 전후의 데이터가 일관되게 저장되어 있어야 함.
+        - I(고립성) - Isolation, 트랜잭션이 발생할 동안 다른 트랜잭션이 값을 수정하지 못하게 막음.
+        - D(지속성) - Durability, 트랜잭션 후에 저장된 데이터는 무한히 값이 유지되어야 함. 
     - 동시성 제어 :[SQL1](./day06/db09_동시성제어1.sql) / [SQL2](./day06/db10_동시성제어2.sql)
         - 락
 
 ## 7일차 
-- 데이터베이스 관리와 보안 
-- 실무실습
+- 인덱스 실습 : [SQL](./day07/db01_인덱스연습.sql)
+    - 500만건 조회시 price로 검색
+        - 인덱스가 없으면 0.67초 소요
+        - 인덱스를 걸면 0.06초 소요
 
+- 데이터베이스 관리와 보안 : [SQL](./day07/db02_DB관리.sql)
+- 실무실습 : [SQL](./day07/db03_쿼리연습.sql)
+    - 서브쿼리 까지 
 - Python GUI로 DB연동 앱 개발
 
 ## 8일차 
+- 실무실습 : []()
+    - 서브쿼리부터 
+- 데이터모델링 실습
+- 파이썬 GUI DB연동
 
 ## 9일차 
+- 코딩테스트 
